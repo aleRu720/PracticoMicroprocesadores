@@ -1,4 +1,5 @@
 # PracticoMicroprocesadores
+
 La idea es utilizar  dos sensores, LM35 y PT1000 leerlos en el ADC y enviarlos por la UART con una MEF que controle todo el proceso.
 El usuario pulsa el botón y el equipo comienza la adquisición y envío datos por la UART hasta que se pulse nuevamente el botón.
 Los datos se van a recepcionar en la PC, en una interfaz hecha en QT(C++). 

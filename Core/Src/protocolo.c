@@ -220,7 +220,7 @@ static void DecodeCommand(_sSerial *data)
     buffer[inicioTx++]=':';
 
     switch(data->rxdata[1]) {
-        case 0xA0: //!< Valor del ADC
+        case 0xA0: //!< Valor del ADC several channels
             buffer[inicioTx++]=0xA0;
            	myWord.ui16[0]= data->adcChanel[0];
 			buffer[inicioTx++]=myWord.ui8[0];
@@ -236,10 +236,10 @@ static void DecodeCommand(_sSerial *data)
 	        }
 	        data->outBuff[data->txWrite++]=cheksum;
             break;
-        case 0xA1: //!< Valor del ADC CH_1
+        case 0xA1: //!< No ACK de la PC, no pudo decodificar el mensaje
         	ackHeader=NOK;
             break;
-        case 0x0D: //!< Version de Firmware
+        case 0x0D: //!< ACK de la PC mensaje recibido y decodificado correctamente
         	ackHeader=OK;
         	break;
         default:
