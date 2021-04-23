@@ -199,6 +199,8 @@ static void decodeHeader(_sSerial *data){
                 }
 			}
 			break;
+			default:
+				headerrx = 0;
 		}
 	}
 }
@@ -209,7 +211,7 @@ static void DecodeCommand(_sSerial *data)
     uint8_t inicioTx=0, cheksum=0;
     unsigned char buffer[256];
     //! 0x0D ACK
-    //! 0X0A comando terminado
+    //! 0X0A Envío de datos del ADC
 
     buffer[inicioTx++]='U';
     buffer[inicioTx++]='N';
@@ -236,7 +238,7 @@ static void DecodeCommand(_sSerial *data)
 	        }
 	        data->outBuff[data->txWrite++]=cheksum;
             break;
-        case 0xA1: //!< No ACK de la PC, no pudo decodificar el mensaje
+        case 0xA1: //!<  No ACK de la PC, no pudo decodificar el mensaje
         	ackHeader=NOK;
             break;
         case 0x0D: //!< ACK de la PC mensaje recibido y decodificado correctamente
